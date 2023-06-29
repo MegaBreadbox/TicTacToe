@@ -1,5 +1,6 @@
 package com.example.tic_tac_toe
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -14,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tic_tac_toe.ui.theme.TicTac_ToeTheme
@@ -24,11 +26,11 @@ import com.example.tic_tac_toe.ui.theme.TicTac_ToeTheme
 fun boardLayout(
     toeModel: TicTacToeModel = viewModel(),
 ){
-    val TicTacToeState by toeModel.uiState.collectAsState()
+    val ticTacToeState by toeModel.uiState.collectAsState()
     LazyVerticalGrid(
         columns = GridCells.Fixed(3)
     ){
-        items(9,){boardCard(it, toeModel)
+        items(9,){boardCard(it, toeModel, ticTacToeState)
         }
         // put the 3 in a row check into lazy grid
     }
@@ -36,7 +38,12 @@ fun boardLayout(
 
 
 @Composable
-private fun boardCard(cardIndex: Int, viewModel: TicTacToeModel = viewModel() ,modifier: Modifier = Modifier) {
+private fun boardCard(
+    cardIndex: Int,
+    viewModel: TicTacToeModel = viewModel(),
+    uiState: TicTacToeUiState,
+    modifier: Modifier = Modifier,
+) {
     //hoist isCircle because otherwise its managed individually across 9 cards.
 
     Card(
@@ -47,6 +54,9 @@ private fun boardCard(cardIndex: Int, viewModel: TicTacToeModel = viewModel() ,m
     ) {
         Row(){
             Text(text = "select..")
+            if(uiState.board[cardIndex] == "Circle")
+                modifier.background(color = Color.Blue)
+
         }
     }
 }
