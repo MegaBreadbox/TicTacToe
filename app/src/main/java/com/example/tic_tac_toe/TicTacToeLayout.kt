@@ -53,9 +53,11 @@ private fun boardCard(
             }
     ) {
         Row(){
-            Text(text = "select..")
-            if(uiState.board[cardIndex] == "Circle")
-                modifier.background(color = Color.Blue)
+            if(uiState.board[cardIndex] == "Circle"){
+                Text(text = "Circle")
+            } else {
+                Text(text = "select..")
+            }
 
         }
     }

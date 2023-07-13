@@ -16,7 +16,7 @@ class TicTacToeModel: ViewModel() {
 
 
     fun selectSpace(UiIndex: Int) {
-        if (_uiState.value.isEmpty && _uiState.value.isCircle) {
+        if(_uiState.value.board[UiIndex] == "empty" && _uiState.value.isCircle) {
             tempBoard[UiIndex] = "Circle"
             _uiState.update { currentState ->
                 currentState.copy(
@@ -26,6 +26,7 @@ class TicTacToeModel: ViewModel() {
                 )
             }
         }
+        else if(_uiState.value.board[UiIndex] == "empty" && )
     }
 
 
