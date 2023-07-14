@@ -31,6 +31,7 @@ fun BoardLayout(
         }
         // put the 3 in a row check into lazy grid
     }
+
 }
 
 
@@ -63,6 +64,11 @@ private fun BoardCard(
             }
         }
     }
+}
+
+@Composable
+private fun gameOver(){
+
 }
 
 @Preview(showBackground = true)

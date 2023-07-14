@@ -41,7 +41,11 @@ class TicTacToeModel: ViewModel() {
                 tempBoard[i-1] == tempBoard[i] && tempBoard[i+1] == tempBoard[i]
                 && tempBoard[i] != "empty"
             ){
-
+                _uiState.update{
+                    it.copy(
+                        isGameOver = true
+                    )
+                }
             }
         }
     }
