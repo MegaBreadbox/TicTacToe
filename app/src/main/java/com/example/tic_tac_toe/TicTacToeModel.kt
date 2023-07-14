@@ -35,6 +35,17 @@ class TicTacToeModel: ViewModel() {
         }
     }
 
+    fun winCondition (){
+        for(i in 1..tempBoard.size){
+            if(
+                tempBoard[i-1] == tempBoard[i] && tempBoard[i+1] == tempBoard[i]
+                && tempBoard[i] != "empty"
+            ){
+
+            }
+        }
+    }
+
 
 
 
