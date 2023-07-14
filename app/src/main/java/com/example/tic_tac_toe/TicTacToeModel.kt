@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import java.util.Collections.list
 
 class TicTacToeModel: ViewModel() {
     private val _uiState = MutableStateFlow(TicTacToeUiState())
@@ -20,13 +19,20 @@ class TicTacToeModel: ViewModel() {
             tempBoard[UiIndex] = "Circle"
             _uiState.update { currentState ->
                 currentState.copy(
-                    isEmpty = false,
                     isCircle = !_uiState.value.isCircle,
                     board = tempBoard
                 )
             }
         }
-        else if(_uiState.value.board[UiIndex] == "empty" && )
+        else if(_uiState.value.board[UiIndex] == "empty" && !_uiState.value.isCircle){
+            tempBoard[UiIndex] = "Cross"
+            _uiState.update {
+                it.copy(
+                    isCircle = !_uiState.value.isCircle,
+                    board = tempBoard
+                )
+            }
+        }
     }
 
 
