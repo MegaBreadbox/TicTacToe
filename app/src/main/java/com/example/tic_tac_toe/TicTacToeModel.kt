@@ -1,6 +1,7 @@
 package com.example.tic_tac_toe
 
 import androidx.lifecycle.ViewModel
+import com.example.tic_tac_toe.data.EmptyList.initialBoard
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -47,6 +48,16 @@ class TicTacToeModel: ViewModel() {
                     )
                 }
             }
+        }
+    }
+
+    fun resetGame(){
+        _uiState.update{
+            it.copy(
+                isGameOver = false,
+                isCircle = true,
+                board = initialBoard
+            )
         }
     }
 
