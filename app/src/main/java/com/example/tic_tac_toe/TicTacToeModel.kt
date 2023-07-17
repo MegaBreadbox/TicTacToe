@@ -49,7 +49,7 @@ class TicTacToeModel: ViewModel() {
     }
 
     fun winCondition(): Boolean {
-        //horizontal victory
+        //Horizontal victory
         for(i in 1 until tempBoard.size step 3){
             if(
                 tempBoard[i-1] == tempBoard[i] && tempBoard[i+1] == tempBoard[i]
@@ -73,8 +73,14 @@ class TicTacToeModel: ViewModel() {
             }
         }
         //Vertical victory
-        for(i in 1 until tempBoard.size step 3){
-
+        for(i in 0..2){
+            if(
+                tempBoard[i] != "empty" && tempBoard[i] == tempBoard[i+3] &&
+                        tempBoard[i] == tempBoard[i+6]
+            ){
+                victoryUpdate()
+                return true
+            }
         }
         return false
     }

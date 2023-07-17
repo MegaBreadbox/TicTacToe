@@ -1,6 +1,7 @@
 package com.example.tic_tac_toe
 
 import android.app.Activity
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -16,6 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -63,10 +65,12 @@ private fun BoardCard(
     ) {
         Row(){
             if(uiState.board[cardIndex] == "Circle"){
-                Text(text = "Circle")
+                Image(painter = painterResource(id = R.drawable.team_circle),
+                    contentDescription = "Circle")
             }
             else if(uiState.board[cardIndex] == "Cross"){
-                Text(text = "Cross")
+                Image(painter = painterResource(id =R.drawable.team_cross ),
+                    contentDescription = "Cross")
             }
             else {
                 Text(text = "select..")
