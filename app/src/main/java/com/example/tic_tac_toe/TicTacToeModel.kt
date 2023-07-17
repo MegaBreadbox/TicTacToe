@@ -13,6 +13,9 @@ class TicTacToeModel: ViewModel() {
     private var tempBoard: MutableList<String> = _uiState.value.board.toMutableList()
 
 
+    companion object {
+        private const val CENTER_OF_BOARD = 4
+    }
 
 
     fun selectSpace(UiIndex: Int) {
@@ -36,19 +39,44 @@ class TicTacToeModel: ViewModel() {
         }
     }
 
-    fun winCondition (){
-        for(i in 1..tempBoard.size){
+    private fun victoryUpdate(){
+        _uiState.update{
+            it.copy(
+                victoryText = if(_uiState.value.isCircle){ "Cross Wins!"} else "Circle Wins!",
+                isGameOver = true
+            )
+        }
+    }
+
+    fun winCondition(): Boolean {
+        //horizontal victory
+        for(i in 1 until tempBoard.size step 3){
             if(
                 tempBoard[i-1] == tempBoard[i] && tempBoard[i+1] == tempBoard[i]
                 && tempBoard[i] != "empty"
             ){
-                _uiState.update{
-                    it.copy(
-                        isGameOver = true
-                    )
-                }
+                victoryUpdate()
+                return true
+            }
+
+        }
+        //Diagonal victory
+        if(tempBoard[CENTER_OF_BOARD] != "empty") {
+            if (
+                tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD - 2] &&
+                tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD + 2] ||
+                tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD - 4] &&
+                tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD + 4]
+            ) {
+                victoryUpdate()
+                return true
             }
         }
+        //Vertical victory
+        for(i in 1 until tempBoard.size step 3){
+
+        }
+        return false
     }
 
     fun resetGame(){

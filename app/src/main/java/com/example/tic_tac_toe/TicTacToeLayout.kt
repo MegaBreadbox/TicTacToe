@@ -36,7 +36,10 @@ fun BoardLayout(
         // put the 3 in a row check into lazy grid
     }
     if(!ticTacToeState.board.contains("empty")){
-        GameOver()
+        GameOver(ticTacToeState)
+    }
+    else if(toeModel.winCondition()){
+        GameOver(ticTacToeState)
     }
 }
 
@@ -74,12 +77,13 @@ private fun BoardCard(
 
 @Composable
 private fun GameOver(
+    uiState: TicTacToeUiState,
     viewModel: TicTacToeModel = viewModel()
 ){
     val activity = (LocalContext.current as Activity)
 
     AlertDialog(onDismissRequest = { },
-        title = { Text(text = "Game Over")},
+        title = { Text(text = uiState.victoryText)},
         text = {Text(text = "Reset the game?")},
         dismissButton = {
             TextButton(onClick = { activity.finish()}) {
