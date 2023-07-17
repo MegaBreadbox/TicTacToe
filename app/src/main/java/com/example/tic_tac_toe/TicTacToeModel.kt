@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.update
 class TicTacToeModel: ViewModel() {
     private val _uiState = MutableStateFlow(TicTacToeUiState())
     val uiState: StateFlow<TicTacToeUiState> = _uiState.asStateFlow()
-    private val tempBoard: MutableList<String> = _uiState.value.board.toMutableList()
+    private var tempBoard: MutableList<String> = _uiState.value.board.toMutableList()
 
 
 
@@ -59,6 +59,10 @@ class TicTacToeModel: ViewModel() {
                 board = initialBoard
             )
         }
+        for(i in tempBoard.indices){
+            tempBoard[i] = "empty"
+        }
+
     }
 
 
