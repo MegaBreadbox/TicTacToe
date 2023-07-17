@@ -19,4 +19,20 @@ class TicTacToeUnitTest {
     companion object{
         private const val CIRCLE = "Circle"
     }
+
+    //edge case
+    @Test
+    fun gameViewModel_WinCondition_GameOver(){
+        viewModel.selectSpace(0)
+        viewModel.selectSpace(1)
+        viewModel.selectSpace(3)
+        viewModel.selectSpace(4)
+        viewModel.selectSpace(7)
+        viewModel.selectSpace(6)
+        viewModel.selectSpace(2)
+        viewModel.selectSpace(5)
+        viewModel.selectSpace(8)
+        val victoryText = viewModel.uiState.value.victoryText
+        assertEquals(victoryText, "Game Over")
+    }
 }

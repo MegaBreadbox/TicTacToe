@@ -65,6 +65,7 @@ class TicTacToeModel: ViewModel() {
             if (
                 tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD - 2] &&
                 tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD + 2] ||
+
                 tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD - 4] &&
                 tempBoard[CENTER_OF_BOARD] == tempBoard[CENTER_OF_BOARD + 4]
             ) {
@@ -90,7 +91,8 @@ class TicTacToeModel: ViewModel() {
             it.copy(
                 isGameOver = false,
                 isCircle = true,
-                board = initialBoard
+                board = initialBoard,
+                victoryText = "Game Over"
             )
         }
         for(i in tempBoard.indices){
